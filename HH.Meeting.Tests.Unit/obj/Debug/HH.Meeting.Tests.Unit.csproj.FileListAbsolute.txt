@@ -1,0 +1,8 @@
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Unit/bin/Debug/HH.Meeting.Tests.Unit.dll
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Unit/bin/Debug/HH.Meeting.Tests.Unit.pdb
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Unit/bin/Debug/nunit.framework.dll
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Unit/bin/Debug/nunit.framework.xml
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Unit/obj/Debug/HH.Meeting.Tests.Unit.csprojResolveAssemblyReference.cache
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Unit/obj/Debug/HH.Meeting.Tests.Unit.csproj.CoreCompileInputs.cache
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Unit/obj/Debug/HH.Meeting.Tests.Unit.dll
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Unit/obj/Debug/HH.Meeting.Tests.Unit.pdb

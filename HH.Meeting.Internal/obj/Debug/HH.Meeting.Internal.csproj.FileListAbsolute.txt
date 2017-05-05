@@ -1,0 +1,2 @@
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Internal/obj/Debug/HH.Meeting.Internal.csprojResolveAssemblyReference.cache
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Internal/obj/Debug/HH.Meeting.Internal.csproj.CoreCompileInputs.cache

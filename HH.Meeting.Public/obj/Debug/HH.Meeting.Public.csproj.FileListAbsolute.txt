@@ -1,0 +1,6 @@
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Public/bin/Debug/HH.Meeting.Public.dll
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Public/bin/Debug/HH.Meeting.Public.pdb
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Public/obj/Debug/HH.Meeting.Public.csprojResolveAssemblyReference.cache
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Public/obj/Debug/HH.Meeting.Public.csproj.CoreCompileInputs.cache
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Public/obj/Debug/HH.Meeting.Public.dll
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Public/obj/Debug/HH.Meeting.Public.pdb
