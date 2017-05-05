@@ -7,6 +7,7 @@ This is an education platform that connects users who wants to learn similar thi
 - AspNet.WebApi
 - AspNet.WebApi.Client
 - AspNet.WebApi.Core
+- EntityFramework
 - SimpleInjector (DI)
 - Serilog
 - Azure WebJobs
