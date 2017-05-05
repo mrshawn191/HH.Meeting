@@ -10,6 +10,8 @@ namespace HH.Meeting.Internal.Models
 
         public string Description { get; set; }
 
+        public int Limit { get; set; }
+
         public string ImageUrl { get; set; }
 
         public Location Location { get; set; }
@@ -22,6 +24,7 @@ namespace HH.Meeting.Internal.Models
         {
             Title = chatroom.Title;
             Description = chatroom.Description;
+            Limit = chatroom.Limit;
             ImageUrl = chatroom.ImageUrl;
             Location = chatroom.Location;
             Owner = chatroom.Owner;

@@ -1,7 +1,7 @@
 ﻿using HH.Meeting.Internal.Repositories;
 using SimpleInjector;
 
-namespace HH.Meeting.Worker
+namespace HH.Meeting
 {
     public class SimpleInjectorContainer
     {

@@ -17,7 +17,7 @@ namespace HH.Meeting.Controllers
             _serviceBus = serviceBus;
         }
 
-        [HttpGet, Route("api/chatroom/{id}")]
+        [HttpGet, Route("api/chatrooms/{id}")]
         public IHttpActionResult GetChatroom([FromUri] int id)
         {
             var chatroom = _chatroomRepository.GetChatroomById(id);
@@ -25,10 +25,26 @@ namespace HH.Meeting.Controllers
             return Ok(chatroom);
         }
 
-        [HttpPost, Route("api/chatroom/{id}")]
+        [HttpPost, Route("api/chatrooms/{id}")]
         public IHttpActionResult CreateOrUpdateChatroom([FromUri] int id, [FromBody] CreateChatroomRequest request)
         {
 
+            return Ok();
+        }
+
+        [HttpGet, Route("api/chatrooms/{id}")]
+        public IHttpActionResult JoinChatroom()
+        {
+        }
+
+        [HttpPost, Route("api/chatrooms/{id}/access")]
+        public IHttpActionResult RequestAccessToChatroom()
+        {
+        }
+
+        [HttpDelete, Route("api/chatroom/{id}")]
+        public IHttpActionResult DeleteChatroom([FromUri] int id)
+        {
         }
     }
 }

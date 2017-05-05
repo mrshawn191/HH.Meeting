@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SimpleInjector;
 
 namespace HH.Meeting.Worker
 {
@@ -7,6 +8,10 @@ namespace HH.Meeting.Worker
     {
         public static void Main(string[] args)
         {
+            // Initialize dependency injection
+            var container = new Container();
+            new SimpleInjectorContainer().Initialize(container);
+
         }
     }
 }
