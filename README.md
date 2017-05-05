@@ -10,11 +10,15 @@ The targeted application goes in hand with a front-end application that is writt
 
 ## Project Structure
 
-⋅⋅⋅HH.Meeting = Contains Api Controllers⋅⋅
-⋅⋅⋅HH.Meeting.Internal = Contains core business logic,⋅⋅
-⋅⋅⋅HH.Meeting.Public = Used as a public library, including api request/response objects, client libraries. Will come in hand in case we split into microservices.⋅⋅
-⋅⋅⋅HH.Meeting.Tests.Integration = Contains tests that involves a whole user interaction flow⋅⋅
-⋅⋅⋅HH.Meeting.Tests.Unit = Contains isolated unit tests⋅⋅
+HH.Meeting = Contains Api Controllers
+
+HH.Meeting.Internal = Contains core business logic, 
+
+HH.Meeting.Public = Used as a public library, including api request/response objects, client libraries. Will come in hand in case we split into microservices. 
+
+HH.Meeting.Tests.Integration = Contains tests that involves a whole user interaction flow
+
+HH.Meeting.Tests.Unit = Contains isolated unit tests
 
 ## Architecture 
 
