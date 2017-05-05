@@ -69,6 +69,7 @@
     <Compile Include="Models\AnonymousMeeting.cs" />
     <Compile Include="Models\AnonymousMeetingPart.cs" />
     <Compile Include="Models\Chatroom.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Location.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Repositories\MeetingRepository.cs" />
     <Compile Include="Repositories\MembershipRepository.cs" />
     <Compile Include="Repositories\SmsMessageRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\VideoRepository.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -16,5 +16,7 @@ namespace HH.Meeting.Internal.Repositories
         public virtual DbSet<Video> Video { get; set; }
 
         public virtual DbSet<Membership> Membership { get; set; }
+
+        public virtual DbSet<User> User { get; set; }
     }
 }
