@@ -76,7 +76,6 @@
     <Compile Include="Models\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ChatroomRepository.cs" />
-    <Compile Include="Repositories\EventRepository.cs" />
     <Compile Include="Repositories\MeetingConnection.cs" />
     <Compile Include="Repositories\Context.cs" />
     <Compile Include="Repositories\MeetingContextFactory.cs" />
