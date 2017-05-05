@@ -15,12 +15,10 @@ namespace HH.Meeting
             var container = new Container();
             new SimpleInjectorContainer().Initialize(container);
 
-
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
         }
     }
 }

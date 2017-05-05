@@ -42,15 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clients\MeetingClient.cs" />
     <Compile Include="CreateMeetingRequest.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="Messages\CreateChatroomMessage.cs" />
+    <Compile Include="Messages\CreateMeetingMessage.cs" />
+    <Compile Include="Messages\CreateSmsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\CreateChatroomRequest.cs" />
+    <Compile Include="Requests\CreateOrUpdateVideoRequest.cs" />
+    <Compile Include="Requests\CreateSmsMessageRequest.cs" />
     <Compile Include="ServiceBus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dto" />
-    <Folder Include="Messages" />
     <Folder Include="Response" />
   </ItemGroup>
   <ItemGroup>

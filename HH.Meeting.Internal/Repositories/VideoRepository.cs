@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿using System.Data.Entity.Core;
+using System.Data.SqlClient;
+using System.Linq;
+using HH.Meeting.Internal.Exceptions;
 using HH.Meeting.Internal.Models;
+using Serilog;
 
 namespace HH.Meeting.Internal.Repositories
 {
@@ -18,7 +22,7 @@ namespace HH.Meeting.Internal.Repositories
         /// <summary>
         /// Create or update video
         /// </summary>
-        void CreateOrUpdateVideo(Video video);
+        Video CreateOrUpdateVideo(Video video);
 
         /// <summary>
         /// Deletes video with a specific id
@@ -29,10 +33,12 @@ namespace HH.Meeting.Internal.Repositories
     public class VideoRepository : IVideoRepository
     {
         private readonly Context _context;
+        private readonly ILogger _logger;
 
-        public VideoRepository(Context context)
+        public VideoRepository(Context context, ILogger logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public Video GetVideoById(int id)
@@ -45,9 +51,10 @@ namespace HH.Meeting.Internal.Repositories
             return _context.Video.AsNoTracking().FirstOrDefault(x => x.Title == title);
         }
 
-        public void CreateOrUpdateVideo(Video video)
+        public Video CreateOrUpdateVideo(Video video)
         {
             var foundVideo = GetVideoById(video.Id);
+            var rowsAffected = 0;
 
             if (foundVideo != null)
             {
@@ -58,7 +65,23 @@ namespace HH.Meeting.Internal.Repositories
                 _context.Video.Add(video);
             }
 
-            _context.SaveChanges();
+            try
+            {
+                rowsAffected += _context.SaveChanges();
+            }
+            catch (SqlException e)
+            {
+                _logger.Error("Error adding video {video}", video);
+
+                if (e.InnerException is UpdateException)
+                {
+                    throw new VideoUpdateException("Failed to insert video");
+                }
+                throw;
+            }
+
+            _logger.Information("Saved video changes for {video} {rowsAffected}", video, rowsAffected);
+            return GetVideoById(video.Id);
         }
 
         public void DeleteVideo(int id)

@@ -1,6 +1,8 @@
-﻿namespace HH.Meeting.Controllers
+﻿using System.Web.Http;
+
+namespace HH.Meeting.Controllers
 {
-    public class MembershipController
+    public class MembershipController : ApiController
     {
 
     }

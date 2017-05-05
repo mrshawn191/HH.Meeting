@@ -58,6 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\ChatroomUpdateException.cs" />
+    <Compile Include="Exceptions\MeetingUpdateException.cs" />
+    <Compile Include="Exceptions\SmsMessageUpdateException.cs" />
+    <Compile Include="Exceptions\VideoUpdateException.cs" />
     <Compile Include="Factories\ChatroomFactory.cs" />
     <Compile Include="Factories\EventFactory.cs" />
     <Compile Include="Factories\VideoFactory.cs" />

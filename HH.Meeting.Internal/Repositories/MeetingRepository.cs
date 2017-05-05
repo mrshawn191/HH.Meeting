@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Core;
+using System.Data.SqlClient;
 using System.Linq;
+using HH.Meeting.Internal.Exceptions;
 using RefactorThis.GraphDiff;
+using Serilog;
 
 namespace HH.Meeting.Internal.Repositories
 {
@@ -25,7 +29,7 @@ namespace HH.Meeting.Internal.Repositories
         /// <summary>
         /// Creates or update meeting
         /// </summary>
-        void CreateOrUpdateMeeting(Models.Meeting meeting);
+        Models.Meeting CreateOrUpdateMeeting(Models.Meeting meeting);
 
         /// <summary>
         /// Deletes meeting with a specific id
@@ -36,10 +40,12 @@ namespace HH.Meeting.Internal.Repositories
     public class MeetingRepository : IMeetingRepository
     {
         private readonly Context _context;
+        private readonly ILogger _logger;
 
-        public MeetingRepository(Context context)
+        public MeetingRepository(Context context, ILogger logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public Models.Meeting GetMeetingById(int id)
@@ -54,6 +60,8 @@ namespace HH.Meeting.Internal.Repositories
 
         public Models.Meeting InsertOrUpdateMeeting(Models.Meeting meeting)
         {
+            var rowsAffected = 0;
+
             if (_context.Entry(meeting).State == EntityState.Detached)
             {
                 // Update object graph using GraphDiff
@@ -65,14 +73,29 @@ namespace HH.Meeting.Internal.Repositories
                 );
             }
 
-            _context.SaveChanges();
+            try
+            {
+                rowsAffected += _context.SaveChanges();
+            }
+            catch (SqlException e)
+            {
+                _logger.Error("Error adding {meeting}", meeting);
 
+                if (e.InnerException is UpdateException)
+                {
+                    throw new MeetingUpdateException("Failed to insert meeting");
+                }
+                throw;
+            }
+
+            _logger.Information("Saved meeting changes for {meeting} {rowsAffected}", meeting, rowsAffected;
             return GetMeetingById(meeting.Id);
         }
 
-        public void CreateOrUpdateMeeting(Models.Meeting meeting)
+        public Models.Meeting CreateOrUpdateMeeting(Models.Meeting meeting)
         {
             var foundMeeting = GetMeetingById(meeting.Id);
+            var rowsAffected = 0;
 
             if (foundMeeting != null)
             {
@@ -83,7 +106,23 @@ namespace HH.Meeting.Internal.Repositories
                 _context.Meeting.Add(meeting);
             }
 
-            _context.SaveChanges();
+            try
+            {
+                rowsAffected += _context.SaveChanges();
+            }
+            catch (SqlException e)
+            {
+                _logger.Error("Error adding meeting {meeting}", meeting);
+
+                if (e.InnerException is UpdateException)
+                {
+                    throw new MeetingUpdateException("Failed to insert meeting");
+                }
+                throw;
+            }
+
+            _logger.Information("Saved meeting changes for {meeting} {rowsAffected}", meeting, rowsAffected);
+            return GetMeetingById(meeting.Id);
         }
 
         public void DeleteMeeting(int id)

@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿using System.Data.Entity.Core;
+using System.Data.SqlClient;
+using System.Linq;
+using HH.Meeting.Internal.Exceptions;
 using HH.Meeting.Internal.Models;
+using Serilog;
 
 namespace HH.Meeting.Internal.Repositories
 {
@@ -18,7 +22,7 @@ namespace HH.Meeting.Internal.Repositories
         /// <summary>
         /// Creates or update chatroom
         /// </summary>
-        void CreateOrUpdateChatroom(Chatroom chatroom);
+        Chatroom CreateOrUpdateChatroom(Chatroom chatroom);
 
         /// <summary>
         /// Deletes a chatroom with a specific id
@@ -29,10 +33,12 @@ namespace HH.Meeting.Internal.Repositories
     public class ChatroomRepository : IChatroomRepository
     {
         private readonly Context _context;
+        private readonly ILogger _logger;
 
-        public ChatroomRepository(Context context)
+        public ChatroomRepository(Context context, ILogger logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public Chatroom GetChatroomById(int id)
@@ -45,9 +51,10 @@ namespace HH.Meeting.Internal.Repositories
             return _context.Chatroom.AsNoTracking().FirstOrDefault(x => x.Title == title);
         }
 
-        public void CreateOrUpdateChatroom(Chatroom chatroom)
+        public Chatroom CreateOrUpdateChatroom(Chatroom chatroom)
         {
             var foundChatroom = GetChatroomById(chatroom.Id);
+            var rowsAffected = 0;
 
             if (foundChatroom != null)
             {
@@ -58,7 +65,23 @@ namespace HH.Meeting.Internal.Repositories
                 _context.Chatroom.Add(chatroom);
             }
 
-            _context.SaveChanges();
+            try
+            {
+                rowsAffected += _context.SaveChanges();
+            }
+            catch (SqlException e)
+            {
+                _logger.Error("Error adding {chatroom}", chatroom);
+
+                if (e.InnerException is UpdateException)
+                {
+                    throw new ChatroomUpdateException("Failed to insert chatroom");
+                }
+                throw;
+            }
+
+            _logger.Information("Saved chatroom changes for {chatroom} {rowsAffected}", chatroom, rowsAffected);
+            return GetChatroomById(chatroom.Id);
         }
 
         public void DeleteChatroom(int id)
