@@ -37,26 +37,25 @@
       <HintPath>..\packages\WindowsAzure.ServiceBus.4.0.0\lib\net45-full\Microsoft.ServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clients\MeetingClient.cs" />
-    <Compile Include="CreateMeetingRequest.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Messages\CreateChatroomMessage.cs" />
     <Compile Include="Messages\CreateMeetingMessage.cs" />
     <Compile Include="Messages\CreateSmsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\CreateChatroomRequest.cs" />
-    <Compile Include="Requests\CreateOrUpdateVideoRequest.cs" />
-    <Compile Include="Requests\CreateSmsMessageRequest.cs" />
+    <Compile Include="RequestDto\CreateChatroomRequest.cs" />
+    <Compile Include="RequestDto\CreateMeetingRequest.cs" />
+    <Compile Include="RequestDto\CreateOrUpdateVideoRequest.cs" />
+    <Compile Include="RequestDto\CreateSmsMessageRequest.cs" />
+    <Compile Include="RequestDto\CreateUserRequest.cs" />
+    <Compile Include="ResponseDto\CreateUserResponse.cs" />
     <Compile Include="ServiceBus.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dto" />
-    <Folder Include="Response" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

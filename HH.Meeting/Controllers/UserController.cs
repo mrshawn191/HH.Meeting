@@ -4,7 +4,7 @@ using HH.Meeting.Public;
 
 namespace HH.Meeting.Controllers
 {
-    public class UserController : ApiController
+    public class UserController : BaseUserController
     {
         private readonly IUserRepository _userRepository;
         private readonly IServiceBus _serviceBus;
@@ -14,6 +14,7 @@ namespace HH.Meeting.Controllers
             _userRepository = userRepository;
             _serviceBus = serviceBus;
         }
+
 
     }
 }

@@ -9,7 +9,7 @@ namespace HH.Meeting.Internal.Repositories
         /// <summary>
         /// Gets user with a specific id
         /// </summary>
-        User GetUserById(int id);
+        User GetUserById(string id);
 
         /// <summary>
         /// Creates user
@@ -33,7 +33,7 @@ namespace HH.Meeting.Internal.Repositories
             _logger = logger;
         }
 
-        public User GetUserById(int id)
+        public User GetUserById(string id)
         {
             return _context.User.SingleOrDefault(x => x.Id == id);
         }

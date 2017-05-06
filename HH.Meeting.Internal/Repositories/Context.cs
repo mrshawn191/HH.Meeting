@@ -5,6 +5,10 @@ namespace HH.Meeting.Internal.Repositories
 {
     public class Context : DbContext
     {
+        public Context() : base("MyConnectionString")
+        {
+        }
+
         public virtual DbSet<Models.Meeting> Meeting { get; set; }
 
         public virtual DbSet<Event> Event { get; set; }
