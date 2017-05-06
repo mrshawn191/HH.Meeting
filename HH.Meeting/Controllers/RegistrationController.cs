@@ -4,6 +4,7 @@ using System.Web.Http;
 using HH.Meeting.Internal.Models;
 using HH.Meeting.Internal.Repositories;
 using HH.Meeting.Public.RequestDto;
+using Microsoft.AspNet.Identity;
 using Context = System.Runtime.Remoting.Contexts.Context;
 
 namespace HH.Meeting.Controllers
@@ -19,7 +20,8 @@ namespace HH.Meeting.Controllers
             _userRepository = userRepository;
         }
 
-        [HttpPost, Route("")]
+        [AllowAnonymous]
+        [HttpPost, Route("api/registration")]
         public async Task<IHttpActionResult> CreateUser(CreateUserRequest request)
         {
             if (!ModelState.IsValid)
@@ -56,5 +58,27 @@ namespace HH.Meeting.Controllers
 
             return Created(locationHeader, BaseUserFactory.Create(user));
         }
+
+        [AllowAnonymous]
+        [HttpGet, Route("api/registration/confirm")]
+        public async Task<IHttpActionResult> ConfirmEmail(string userId = "", string code = "")
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(code))
+            {
+                ModelState.AddModelError("", "UserId and Code are required");
+                return BadRequest(ModelState);
+            }
+
+            var result = await this.AppUserManager.ConfirmEmailAsync(userId, code);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
+        }
+
+
     }
 }
