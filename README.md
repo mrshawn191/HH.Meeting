@@ -2,7 +2,7 @@
 
 This is an education platform that connects users who wants to learn similar things together. 
 
-Link to project - [Homeruns](https://www.homeruns.io)
+Link to project live - [Homeruns](https://www.homeruns.io)
 
 ## Technology
 
