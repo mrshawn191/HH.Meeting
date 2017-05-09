@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Configuration;
+using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
+using Newtonsoft.Json;
 
 
 namespace HH.Meeting.Public
@@ -15,60 +19,40 @@ namespace HH.Meeting.Public
 
     public class ServiceBus : IServiceBus
     {
-        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
+        /// <summary>
+        /// As you can see, the client object reference is assigned to a field of the class,
+        /// which is done here intentionally to signal that applications shall hold on to
+        /// any Service Bus client objects for as long as possible and preferably for the lifetime of the application.
+        /// </summary>
+        QueueClient sendClient;
 
-        private ConcurrentDictionary<Type, QueueClient> QueueClients { get; }
 
-        private MessagingFactory Factory => _factory ?? (_factory = MessagingFactory.CreateFromConnectionString(_config.ServiceBusConnectionString));
-        private NamespaceManager Manager => _manager ?? (_manager = NamespaceManager.CreateFromConnectionString(_config.ServiceBusConnectionString));
-
+        public ServiceBus()
+        {
+            this.sendClient =
+                QueueClient.CreateFromConnectionString(ConfigurationManager.AppSettings["ServiceBus.ConnectionString"],
+                    ConfigurationManager.AppSettings["ServiceBus.QueueName"]);
+        }
 
         public async Task SendAsync<T>(T message) where T : IMessage
         {
-            var client = await GetQueueClient<T>();
-            var brokedMessage = CreateMessage(message);
-
-            await client.SendAsync(brokedMessage);
+            var brokedMessage = CreateBrokeredMessagePayload(message);
+            await sendClient.SendAsync(brokedMessage);
         }
 
-
-        private async Task<QueueClient> GetQueueClient<T>() where T : IMessage
+        /// <summary>
+        /// Creates brokeredMessage with the payload as json serialized
+        /// </summary>
+        private static BrokeredMessage CreateBrokeredMessagePayload<T>(T body)
         {
-            QueueClient client;
-            if (QueueClients.TryGetValue(typeof(T), out client))
-            {
-                return client;
-            }
-
-            try
-            {
-                await _semaphore.WaitAsync();
-
-                if (QueueClients.TryGetValue(typeof(T), out client))
+            var message =
+                new BrokeredMessage(new MemoryStream(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(body))))
                 {
-                    return client;
-                }
+                    ContentType = "application/json",
+                    TimeToLive = TimeSpan.FromMinutes(2)
+                };
 
-                client = await CreateQueueClient<T>();
-                return QueueClients.GetOrAdd(typeof(T), client);
-            }
-            finally
-            {
-                _semaphore.Release();
-            }
-        }
-
-        private async Task<QueueClient> CreateQueueClient<T>() where T : IMessage
-        {
-            var queueName = _messageMapper.GetQueueName<T>();
-
-            if (!await Manager.QueueExistsAsync(queueName))
-            {
-                var description = new QueueDescription(queueName) {EnablePartitioning = true};
-                await Manager.CreateQueueAsync(description);
-            }
-
-            return Factory.CreateQueueClient(queueName);
+            return message;
         }
     }
 }

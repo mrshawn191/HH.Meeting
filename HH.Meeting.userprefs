@@ -1,0 +1,13 @@
+﻿<Properties StartupConfiguration="{122D353E-B0D5-4A1F-BE06-8EFEB3FFC5EC}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HH.Meeting.Internal/Factories/ChatroomFactory.cs">
+    <Files>
+      <File FileName="HH.Meeting.Internal/Factories/ChatroomFactory.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

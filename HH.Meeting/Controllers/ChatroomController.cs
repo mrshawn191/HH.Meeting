@@ -1,7 +1,9 @@
 ﻿using System.Web.Http;
 using System.Web.Services.Protocols;
+using HH.Meeting.Internal.Factories;
 using HH.Meeting.Internal.Repositories;
 using HH.Meeting.Public;
+using HH.Meeting.Public.RequestDto;
 using HH.Meeting.Public.Requests;
 
 namespace HH.Meeting.Controllers
@@ -9,11 +11,14 @@ namespace HH.Meeting.Controllers
     public class ChatroomController : ApiController
     {
         private readonly IChatroomRepository _chatroomRepository;
+        private readonly IChatroomFactory _chatroomFactory;
         private readonly IServiceBus _serviceBus;
 
-        public ChatroomController(IChatroomRepository chatroomRepository, IServiceBus serviceBus)
+        public ChatroomController(IChatroomRepository chatroomRepository, IChatroomFactory chatroomFactory,
+            IServiceBus serviceBus)
         {
             _chatroomRepository = chatroomRepository;
+            _chatroomFactory = chatroomFactory;
             _serviceBus = serviceBus;
         }
 
@@ -28,6 +33,7 @@ namespace HH.Meeting.Controllers
         [HttpPost, Route("api/chatrooms/{id}")]
         public IHttpActionResult CreateOrUpdateChatroom([FromUri] int id, [FromBody] CreateChatroomRequest request)
         {
+            var createdOrUpdatedChatroom = _chatroomFactory
 
             return Ok();
         }
@@ -35,19 +41,16 @@ namespace HH.Meeting.Controllers
         [HttpGet, Route("api/chatrooms/{id}")]
         public IHttpActionResult JoinChatroom()
         {
-
         }
 
         [HttpPost, Route("api/chatrooms/{id}/access")]
         public IHttpActionResult RequestAccessToChatroom()
         {
-
         }
 
         [HttpDelete, Route("api/chatroom/{id}")]
         public IHttpActionResult DeleteChatroom([FromUri] int id)
         {
-            
         }
     }
 }

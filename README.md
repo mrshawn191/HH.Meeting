@@ -42,7 +42,7 @@ HH.Meeting.Tests.Unit = Contains isolated unit tests
 
 ## Links
 - [Homeruns](https://www.homeruns.io)
-- [Azure WebJobs - Service Bus](https://docs.microsoft.com/en-us/azure/app-service-web/websites-dotnet-webjobs-sdk-service-bus)
+- [Azure WebJobs - Service Bus SETUP Guide](https://docs.microsoft.com/en-us/azure/app-service-web/websites-dotnet-webjobs-sdk-service-bus)
 - [Axios](https://github.com/mzabriskie/axios)
 - [SuperAgent](https://github.com/visionmedia/superagent)
 - [Material-UI](http://www.material-ui.com/)
