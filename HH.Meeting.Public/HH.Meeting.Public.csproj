@@ -64,6 +64,7 @@
     <Compile Include="RequestDto\CreateOrUpdateVideoRequest.cs" />
     <Compile Include="RequestDto\CreateSmsMessageRequest.cs" />
     <Compile Include="RequestDto\CreateUserRequest.cs" />
+    <Compile Include="ResponseDto\ChatroomResponse.cs" />
     <Compile Include="ResponseDto\CreateUserResponse.cs" />
     <Compile Include="ServiceBus.cs" />
   </ItemGroup>

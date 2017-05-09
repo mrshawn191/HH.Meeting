@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Threading.Tasks;
+using System.Web.Http;
 using System.Web.Services.Protocols;
 using HH.Meeting.Internal.Factories;
 using HH.Meeting.Internal.Repositories;
@@ -31,11 +32,11 @@ namespace HH.Meeting.Controllers
         }
 
         [HttpPost, Route("api/chatrooms/{id}")]
-        public IHttpActionResult CreateOrUpdateChatroom([FromUri] int id, [FromBody] CreateChatroomRequest request)
+        public async Task<IHttpActionResult> CreateOrUpdateChatroom([FromUri] int id, [FromBody] CreateChatroomRequest request)
         {
-            var createdOrUpdatedChatroom = _chatroomFactory
+            var createdOrUpdatedChatroom = await _chatroomFactory.CreateOrUpdate(request);
 
-            return Ok();
+            return Ok(createdOrUpdatedChatroom.ToResponse());
         }
 
         [HttpGet, Route("api/chatrooms/{id}")]

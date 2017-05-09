@@ -1,4 +1,5 @@
-﻿using HH.Meeting.Internal.Exceptions;
+﻿using System.Threading.Tasks;
+using HH.Meeting.Internal.Exceptions;
 using HH.Meeting.Internal.Models;
 using HH.Meeting.Internal.Repositories;
 using HH.Meeting.Public;
@@ -11,6 +12,7 @@ namespace HH.Meeting.Internal.Factories
 {
     public interface IChatroomFactory
     {
+        Task<Chatroom> CreateOrUpdate(CreateChatroomRequest request);
     }
 
     public class ChatroomFactory : IChatroomFactory
@@ -24,7 +26,7 @@ namespace HH.Meeting.Internal.Factories
             _serviceBus = serviceBus;
         }
 
-        public Chatroom CreateOrUpdate(CreateChatroomRequest request)
+        public async Task<Chatroom> CreateOrUpdate(CreateChatroomRequest request)
         {
             var chatroom = new Chatroom
             {
@@ -34,9 +36,11 @@ namespace HH.Meeting.Internal.Factories
                 Limit = request.Limit,
                 Location = CreateLocationFromRequest(request)
             };
+
+            return await CreateOrUpdate(chatroom);
         }
 
-        public async Task CreateOrUpdate(Chatroom chatroom)
+        private async Task<Chatroom> CreateOrUpdate(Chatroom chatroom)
         {
             try
             {
@@ -47,14 +51,19 @@ namespace HH.Meeting.Internal.Factories
                 _chatroomRepository.CreateOrUpdateChatroom(chatroom);
             }
 
+            await SendCreateChatroomMessage(chatroom);
 
+            return _chatroomRepository.GetChatroomById(chatroom.Id);
         }
 
-        private async Task SendCreateChatroomMessage()
+        private async Task SendCreateChatroomMessage(Chatroom chatroom)
         {
             await _serviceBus.SendAsync(new CreateChatroomMessage
             {
-
+                Title = chatroom.Title,
+                Description = chatroom.Description,
+                ImageUrl = chatroom.ImageUrl,
+                Limit = chatroom.Limit
             });
         }
 

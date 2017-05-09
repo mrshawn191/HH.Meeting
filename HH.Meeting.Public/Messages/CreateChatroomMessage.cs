@@ -3,7 +3,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 
 namespace HH.Meeting.Public.Messages
 {
-    public class CreateChatroomMessage
+    public class CreateChatroomMessage : IMessage
     {
         public int Id { get; set; }
 
