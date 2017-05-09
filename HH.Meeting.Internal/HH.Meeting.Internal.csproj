@@ -39,6 +39,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="JWT, Version=1.3.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\JWT.1.3.4\lib\3.5\JWT.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -85,6 +88,9 @@
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="Twilio, Version=5.4.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Twilio.5.4.2-alpha1\lib\net35\Twilio.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\ChatroomUpdateException.cs" />
@@ -121,6 +127,7 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\VideoRepository.cs" />
     <Compile Include="Services\ApplicationUserManager.cs" />
+    <Compile Include="Services\TwilioService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

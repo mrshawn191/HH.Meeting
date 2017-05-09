@@ -4,11 +4,13 @@
     {
         public int Id { get; set; }
 
-        public int To { get; set; }
+        public string To { get; set; }
 
-        public int From { get; set; }
+        public string From { get; set; }
 
         public string Message { get; set; }
+
+        public string UrlToDashboard { get; set; }
 
         public void Update(SmsMessage smsMessage)
         {
