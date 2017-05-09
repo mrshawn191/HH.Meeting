@@ -49,6 +49,7 @@
     <Compile Include="Messages\CreateMeetingMessage.cs" />
     <Compile Include="Messages\CreateSmsMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestDto\ChangePasswordRequest.cs" />
     <Compile Include="RequestDto\CreateChatroomRequest.cs" />
     <Compile Include="RequestDto\CreateMeetingRequest.cs" />
     <Compile Include="RequestDto\CreateOrUpdateVideoRequest.cs" />

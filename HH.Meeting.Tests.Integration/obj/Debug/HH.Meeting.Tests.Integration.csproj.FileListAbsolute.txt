@@ -6,3 +6,9 @@
 /Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Integration/obj/Debug/HH.Meeting.Tests.Integration.csproj.CoreCompileInputs.cache
 /Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Integration/obj/Debug/HH.Meeting.Tests.Integration.dll
 /Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Integration/obj/Debug/HH.Meeting.Tests.Integration.pdb
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Integration/bin/Debug/FluentAssertions.Core.dll
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Integration/bin/Debug/FluentAssertions.dll
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Integration/bin/Debug/FluentAssertions.pdb
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Integration/bin/Debug/FluentAssertions.xml
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Integration/bin/Debug/FluentAssertions.Core.pdb
+/Users/Jun/RiderProjects/HH.Meeting/HH.Meeting.Tests.Integration/bin/Debug/FluentAssertions.Core.xml

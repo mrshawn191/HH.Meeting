@@ -11,15 +11,6 @@ namespace HH.Meeting.Controllers
 {
     public class RegistrationController : BaseUserController
     {
-        private readonly Context _context;
-        private readonly IUserRepository _userRepository;
-
-        public RegistrationController(Context context, IUserRepository userRepository)
-        {
-            _context = context;
-            _userRepository = userRepository;
-        }
-
         [AllowAnonymous]
         [HttpPost, Route("api/registration")]
         public async Task<IHttpActionResult> CreateUser(CreateUserRequest request)
@@ -79,6 +70,24 @@ namespace HH.Meeting.Controllers
             return Ok();
         }
 
+        [Authorize]
+        [HttpPost, Route("")]
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            var result = await this.AppUserManager.ChangePasswordAsync(User.Identity.GetUserId(), request.OldPassword,
+                request.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Threading.Tasks;
+using System.Web.Http;
 using HH.Meeting.Internal.Repositories;
 using HH.Meeting.Public;
 
@@ -13,6 +14,19 @@ namespace HH.Meeting.Controllers
         {
             _userRepository = userRepository;
             _serviceBus = serviceBus;
+        }
+
+        [HttpGet, Route("", Name = "GetUserById")]
+        public async Task<IHttpActionResult> GetUser(string id)
+        {
+            var user = await this.AppUserManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(this.BaseUserFactory.Create(user));
         }
 
 

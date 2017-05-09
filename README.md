@@ -2,6 +2,8 @@
 
 This is an education platform that connects users who wants to learn similar things together. 
 
+Link to project - [Homeruns](https://www.homeruns.io)
+
 ## Technology
 
 The application is built as an monolitic app but with multiple solutions, that makes it practical incase we want to decouple different domains into multiple microservices. 
@@ -27,6 +29,8 @@ HH.Meeting.Tests.Unit = Contains isolated unit tests
 - AspNet.WebApi
 - AspNet.WebApi.Client
 - AspNet.WebApi.Core
+- IdentityServer 
+- OWIN 
 - EntityFramework
 - SimpleInjector (DI)
 - Serilog
@@ -37,6 +41,8 @@ HH.Meeting.Tests.Unit = Contains isolated unit tests
 - Moq
 
 ## Links
-- [Axion](https://www.patreon.com/thenewboston)
-- [TheMovieDB](https://www.themoviedb.org/documentation/api)
+- [Homeruns](https://www.homeruns.io)
+- [Azure WebJobs - Service Bus](https://docs.microsoft.com/en-us/azure/app-service-web/websites-dotnet-webjobs-sdk-service-bus)
+- [Axios](https://github.com/mzabriskie/axios)
+- [SuperAgent](https://github.com/visionmedia/superagent)
 - [Material-UI](http://www.material-ui.com/)

@@ -35,16 +35,19 @@ namespace HH.Meeting.Controllers
         [HttpGet, Route("api/chatrooms/{id}")]
         public IHttpActionResult JoinChatroom()
         {
+
         }
 
         [HttpPost, Route("api/chatrooms/{id}/access")]
         public IHttpActionResult RequestAccessToChatroom()
         {
+
         }
 
         [HttpDelete, Route("api/chatroom/{id}")]
         public IHttpActionResult DeleteChatroom([FromUri] int id)
         {
+            
         }
     }
 }
